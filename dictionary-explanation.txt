@@ -1,0 +1,27 @@
+Dictionary-teknik, även kallat hash-table
+
+var dict = {};  // {key => value}
+
+foreach (var word in words)
+{
+
+  // 1. enkel dictionary
+  dict[word.FromWord] = word; // word.ToWord;
+
+  // 2. dictionary med flera entries
+  if (!dict[word.FromWord]){
+    // ny key => ny array med vårt första entry  
+    dict[word.FromWord] = [word];
+  }
+  else
+  {
+    dict[word.FromWord].Add(word); // en lista med flera ord: [word1, word2]
+  }
+
+
+  dict[snabb]: {FromLanguage; "swedish", ToLanguage: "english", FromWord: "snabb", ToWord: "fast"}
+
+}
+
+Console.Write(dict['snabb'].toWord);    jfr:     Console.Write(dict[0]);
+
