@@ -6,23 +6,22 @@ List<Word> words = [
   /*["snabb", "fast"],
   ["glad", "glad"],*/
   new Word("swedish", "english", "snabb", "fast"), // minnesreferens skapas
-  new Word("swedish", "english", "glad", "happy")
+  new Word("swedish", "english", "snabb", "quick"),
+  new Word("swedish", "english", "snabb", "rapid"),
+  new Word("swedish", "english", "snabb", "speedy"),
+  new Word("swedish", "english", "glad", "happy"),
+  new Word("swedish", "english", "glad", "glad")
 
 ];
 
-
-// words[0] => // samma minnesreferens
-
-// foreach (var word in words)
-// {
-//   Console.WriteLine($"{word.FromLanguage}: {word.FromWord} => {word.ToLanguage}: {word.ToWord} ");
-// }
-
 // key  // value
-Dictionary<string, Word> swedishToEnglish = words.ToDictionary(
-  word => word.FromWord, // ordet jag vill översätta från
-  word => word // hela word objektet (med översättningen till)
+Dictionary<string, List<Word>> swedishToEnglish = words.GroupBy(word => word.FromWord)
+.ToDictionary(
+  group => group.Key,     // ordet jag vill översätta från
+  group => group.ToList() // lista med våra word objekt som matchar nyckeln
 );
 
-Console.WriteLine($"Översättningen av snabb är: {swedishToEnglish["snabb"].ToWord}");
-Console.WriteLine($"Översättningen av glad är: {swedishToEnglish["glad"].ToWord}");
+foreach (var word in swedishToEnglish["snabb"])
+{
+  Console.WriteLine($"Översättning: {word.ToWord}");
+}
